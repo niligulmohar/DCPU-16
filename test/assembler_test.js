@@ -1,14 +1,9 @@
 var Assembler = require("assembler");
 var CPU = require("cpu");
 var assert = require("assert");
+var test_utils = require("test_utils");
 
-function memoryForAssembly() {
-    var cpu = new CPU();
-    var assembler = new Assembler(cpu);
-    var code = Array.prototype.join.call(arguments, "\n");
-    assembler.compile(code + "\n end: DAT 0 \n .ORG 0xffff \n DAT end");
-    return cpu.mem.slice(0, cpu.mem[0xffff]);
-}
+var memoryForAssembly = test_utils.memoryForAssembly;
 
 module.exports = {
     'SET should have opcode 1': function() {

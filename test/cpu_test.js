@@ -1,18 +1,10 @@
 var Assembler = require("assembler");
 var CPU = require("cpu");
 var assert = require("assert");
+var test_utils = require("test_utils");
 
-function assembleOnCpu(cpu, lines) {
-    var assembler = new Assembler(cpu);
-    var code = lines.join("\n");
-    assembler.compile(code + "\n BRK");
-}
-function runOnCpu() {
-    var cpu = new CPU();
-    assembleOnCpu(cpu, Array.prototype.slice.call(arguments, 0));
-    cpu.run();
-    return cpu;
-}
+var assembleOnCpu = test_utils.assembleOnCpu;
+var runOnCpu = test_utils.runOnCpu;
 
 module.exports = {
     'test CPU#addressFor': function() {
