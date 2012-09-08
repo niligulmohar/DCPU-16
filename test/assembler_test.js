@@ -253,6 +253,9 @@ module.exports = {
     'string literals with escapes should be assembled': function() {
         assert.eql(memoryForAssembly('DAT "\\n\\r\\a\\"\\0\\\\"'), [0xa, 0xd, 0x7, 0x22, 0x0, 0x5c]);
     },
+    'string literals with colons should be assembled': function() {
+        assert.eql(memoryForAssembly('DAT ":"'), [0x3a]);
+    },
     'string literals with unrecognized escapes should not be allowed': function() {
         assert.throws(function () { memoryForAssembly('DAT "\\?"'); }, /unrecognized/i);
     },
